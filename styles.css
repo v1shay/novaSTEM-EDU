@@ -166,3 +166,87 @@ body {
 .btn.outline:hover {
   background: var(--green-soft);
 }
+/* ============================
+   MOBILE RESPONSIVE — NOVASTEM
+   ============================ */
+
+@media (max-width: 900px) {
+
+  /* HERO */
+  .hero {
+    padding: 60px 16px 48px;
+  }
+
+  .hero-brand {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-logo {
+    height: 120px; /* still BIG on mobile */
+  }
+
+  .hero h1 {
+    font-size: 4rem; /* scales down but dominant */
+  }
+
+  .hero-tagline {
+    font-size: 1.25rem;
+    margin-bottom: 28px;
+  }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* HERO IMAGES */
+  .hero-images {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero-images img {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* HOW IT WORKS */
+  .media-row {
+    grid-template-columns: 1fr; /* stack */
+  }
+
+  .media-row.landscape img,
+  .media-row.landscape video {
+    height: 220px;
+  }
+
+  .media-row.vertical img {
+    height: 320px;
+  }
+
+  /* IMPACT */
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-grid img {
+    height: 220px;
+  }
+
+  /* FOUNDER */
+  .founder-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .founder img {
+    margin: 0 auto;
+  }
+
+  /* CONTACT */
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
