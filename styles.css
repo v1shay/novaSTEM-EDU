@@ -1,27 +1,28 @@
-/* =========================
-   NOVASTEM — FINAL STYLES
-   ========================= */
+/* ===============================
+   ROOT VARIABLES
+================================ */
 
 :root {
-  /* Core Greens */
-  --green: #15803d;                 /* science green */
-  --green-dark: #166534;            /* accent green */
+  --green: #15803d;
+  --green-dark: #0f5f2e;
   --green-soft: rgba(21, 128, 61, 0.18);
 
-  /* Backgrounds */
-  --bg-main: #eef7f0;               /* visible green tint */
-  --bg-alt: #f4fbf6;
+  --bg-hero: #e6f4ec;
   --bg-white: #ffffff;
+  --bg-soft: #edf8f1;
+  --bg-pastel: #eaf6ef;
 
-  /* Text */
+  --grid-line: rgba(21, 128, 61, 0.08);
+  --diagram-line: rgba(21, 128, 61, 0.14);
+  --notebook-line: rgba(15, 95, 46, 0.08);
+
   --text: #0f172a;
   --muted: #475569;
-
-  /* Grid pattern */
-  --grid-line: rgba(21, 128, 61, 0.08);
 }
 
-/* ---------------- BASE ---------------- */
+/* ===============================
+   GLOBAL RESET
+================================ */
 
 * {
   box-sizing: border-box;
@@ -29,23 +30,16 @@
 
 body {
   margin: 0;
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--text);
-  background: var(--bg-main);
-  line-height: 1.65;
-  font-size: 17.5px;
+  background: var(--bg-hero);
+  line-height: 1.6;
+  font-size: 17px;
 }
 
-/* ---------------- GRID BACKGROUND UTILITY ---------------- */
-
-.grid-bg {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-/* ---------------- LAYOUT ---------------- */
+/* ===============================
+   LAYOUT
+================================ */
 
 .container {
   max-width: 1200px;
@@ -54,58 +48,76 @@ body {
 }
 
 .section {
-  padding: 100px 0;
+  position: relative;
+  padding: 88px 0;
+  overflow: hidden;
 }
 
-/* alternating section rhythm */
-.section:nth-of-type(odd) {
-  background: var(--bg-main);
-}
-
-.section:nth-of-type(even) {
+/* alternating section backgrounds */
+.section:nth-of-type(2) {
   background: var(--bg-white);
 }
 
-/* ---------------- HEADINGS ---------------- */
-
-.section h2 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 3.2rem;
-  margin-bottom: 28px;
+.section:nth-of-type(3) {
+  background: var(--bg-pastel);
 }
 
-.section-text {
-  max-width: 760px;
-  font-size: 1.25rem;
-  color: var(--muted);
-  margin-bottom: 52px;
-}
+/* ===============================
+   SCIENCE GRID BACKGROUND
+================================ */
 
-/* ---------------- BUTTONS ---------------- */
-
-.btn {
-  background: var(--green);
-  color: white;
-  padding: 16px 34px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  border: 2px solid var(--green);
-}
-
-.btn:hover {
-  background: var(--green-dark);
-  border-color: var(--green-dark);
-}
-
-/* ---------------- HERO ---------------- */
-
-.hero {
-  background:
-    linear-gradient(to bottom, var(--bg-main), var(--bg-alt)),
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: auto, 28px 28px, 28px 28px;
+  background-size: 48px 48px;
+  opacity: 0.45;
+  animation: gridFloat 90s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridFloat {
+  to {
+    background-position: 480px 480px;
+  }
+}
+
+.section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===============================
+   NOTEBOOK PAPER TEXTURE
+================================ */
+
+.section:nth-of-type(2)::after,
+.section:nth-of-type(4)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 32px,
+      var(--notebook-line) 34px
+    );
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===============================
+   HERO
+================================ */
+
+.hero {
+  background: var(--bg-hero);
 }
 
 .hero-inner {
@@ -116,140 +128,175 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 28px;
-  margin-bottom: 24px;
+  gap: 22px;
+  margin-bottom: 22px;
 }
 
 .hero-logo {
-  height: 160px;
+  height: 140px;
 }
 
 .hero h1 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 5.6rem;
+  font-size: 5.2rem;
   margin: 0;
 }
 
 .hero-tagline {
-  font-size: 1.75rem;
-  max-width: 900px;
+  font-size: 1.6rem;
+  max-width: 880px;
   margin: 22px auto;
 }
 
 .hero-credibility {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--muted);
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 60px;
+  gap: 18px;
+  margin-bottom: 56px;
 }
 
-/* HERO IMAGES */
+/* plant detailing */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(21,128,61,.12) 2px, transparent 2px),
+    radial-gradient(circle at 85% 30%, rgba(21,128,61,.12) 2px, transparent 2px),
+    linear-gradient(45deg, transparent 48%, rgba(21,128,61,.12) 50%, transparent 52%);
+  background-size: 140px 140px, 200px 200px, 260px 260px;
+  opacity: 0.35;
+  animation: diagramDrift 120s linear infinite;
+  pointer-events: none;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+
+.btn {
+  background: var(--green);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn:hover {
+  opacity: 0.92;
+}
+
+/* ===============================
+   HERO IMAGES
+================================ */
 
 .hero-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  max-width: 1000px;
+  gap: 26px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 .hero-images img {
   width: 100%;
-  height: 280px;
+  height: 260px;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 22px;
 }
 
-/* ---------------- IMPACT ---------------- */
+/* ===============================
+   IMPACT
+================================ */
 
 .impact-simple {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 36px;
   max-width: 1100px;
-  margin: 64px auto 0;
+  margin: 48px auto 0;
 }
 
 .impact-card {
-  background: var(--bg-white);
-  padding: 52px 44px;
-  border-radius: 30px;
+  background: white;
+  padding: 46px 40px;
+  border-radius: 28px;
   text-align: center;
-  border: 1px solid rgba(21, 128, 61, 0.12);
-  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
 }
 
 .impact-card h3 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 2.3rem;
-  margin-bottom: 16px;
-  color: var(--green-dark);
+  font-size: 2.2rem;
+  margin-bottom: 14px;
 }
 
 .impact-card p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--muted);
 }
 
-/* ---------------- HOW IT WORKS ---------------- */
+/* ===============================
+   HOW IT WORKS
+================================ */
 
 .steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 34px;
 }
 
 .step {
-  background: var(--bg-white);
-  padding: 40px;
-  border-radius: 28px;
-  border-left: 6px solid var(--green);
+  background: white;
+  padding: 36px;
+  border-radius: 22px;
 }
 
-/* ---------------- WHAT WE TEACH ---------------- */
+/* ===============================
+   WHAT WE TEACH
+================================ */
 
 .teach-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  gap: 32px;
 }
 
 .teach-card {
-  background: var(--bg-white);
-  border-radius: 28px;
+  background: white;
+  border-radius: 22px;
   overflow: hidden;
-  border: 1px solid rgba(21, 128, 61, 0.12);
 }
 
 .teach-card img {
   width: 100%;
-  height: 340px;
+  height: 300px;
   object-fit: contain;
-  background: var(--bg-alt);
+  background: var(--bg-soft);
 }
 
 .teach-card-content {
-  padding: 28px 28px 32px;
+  padding: 22px;
 }
 
 .teach-card h4 {
-  font-size: 1.45rem;
-  margin-bottom: 10px;
-  color: var(--green-dark);
+  font-size: 1.35rem;
 }
 
-/* ---------------- CLASSROOM ---------------- */
+/* ===============================
+   CLASSROOM
+================================ */
 
 .classroom-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 
 .classroom-grid img,
@@ -257,72 +304,60 @@ body {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 22px;
 }
 
-.caption {
-  margin-top: 10px;
-  font-size: 1.05rem;
-  color: var(--muted);
-}
-
-/* ---------------- FOUNDER ---------------- */
+/* ===============================
+   FOUNDER
+================================ */
 
 .founder-content {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 56px;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
   align-items: center;
 }
 
 .founder img {
-  width: 100%;
-  max-width: 260px;
+  max-width: 300px;
   border-radius: 22px;
 }
 
-/* ---------------- CONTACT ---------------- */
-
-.contact-buttons {
-  display: flex;
-  gap: 20px;
-}
-
-/* ---------------- MOBILE ---------------- */
+/* ===============================
+   MOBILE FIXES
+================================ */
 
 @media (max-width: 900px) {
-  body {
-    font-size: 16.5px;
+  .hero-brand {
+    flex-direction: column;
   }
 
   .hero h1 {
-    font-size: 3.6rem;
-  }
-
-  .hero-logo {
-    height: 120px;
+    font-size: 3.4rem;
   }
 
   .hero-images,
+  .impact-simple,
   .steps,
   .teach-grid,
-  .impact-simple,
   .classroom-grid,
   .founder-content {
     grid-template-columns: 1fr;
   }
 
+  .hero-images img {
+    height: 220px;
+  }
+
   .impact-card {
-    padding: 40px 32px;
+    padding: 36px;
   }
+}
 
-  .teach-card img {
-    height: 280px;
-  }
-
-  .hero-buttons,
-  .contact-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .section::before,
+  .hero::after {
+    animation: none;
   }
 }
