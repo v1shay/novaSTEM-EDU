@@ -1,10 +1,14 @@
 :root {
   --green: #16a34a;
-  --green-soft: rgba(22, 163, 74, 0.12);
+  --green-soft: rgba(22, 163, 74, 0.14);
   --bg-soft: #f6fbf7;
+  --bg-white: #ffffff;
+  --bg-alt: #eef7f1;
   --text: #111;
   --muted: #555;
 }
+
+/* ---------------- BASE ---------------- */
 
 * {
   box-sizing: border-box;
@@ -12,14 +16,14 @@
 
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   color: var(--text);
   background: var(--bg-soft);
-  line-height: 1.6;
-  font-size: 16.5px;
+  line-height: 1.65;
+  font-size: 17px;
 }
 
-/* ---------- LAYOUT ---------- */
+/* ---------------- LAYOUT ---------------- */
 
 .container {
   max-width: 1200px;
@@ -28,23 +32,30 @@ body {
 }
 
 .section {
-  padding: 80px 0;
+  padding: 96px 0;
 }
+
+/* background rhythm */
+.section:nth-of-type(2) { background: var(--bg-soft); }
+.section:nth-of-type(3) { background: var(--bg-white); }
+.section:nth-of-type(4) { background: var(--bg-alt); }
+
+/* ---------------- HEADINGS ---------------- */
 
 .section h2 {
   font-family: "Space Grotesk", sans-serif;
   font-size: 3rem;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .section-text {
   max-width: 760px;
   font-size: 1.2rem;
   color: var(--muted);
-  margin-bottom: 44px;
+  margin-bottom: 48px;
 }
 
-/* ---------- BUTTONS ---------- */
+/* ---------------- BUTTONS ---------------- */
 
 .btn {
   background: var(--green);
@@ -53,17 +64,17 @@ body {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
-  display: inline-block;
 }
 
 .btn:hover {
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
-/* ---------- HERO ---------- */
+/* ---------------- HERO ---------------- */
 
 .hero {
-  padding: 88px 0 72px;
+  padding: 96px 0 80px;
+  background: var(--bg-soft);
 }
 
 .hero-inner {
@@ -74,37 +85,37 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 18px;
+  gap: 22px;
+  margin-bottom: 20px;
 }
 
 .hero-logo {
-  height: 110px;
+  height: 130px; /* BIGGER, more presence */
 }
 
 .hero h1 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 4.8rem;
+  font-size: 5.2rem;
   margin: 0;
 }
 
 .hero-tagline {
-  font-size: 1.55rem;
-  margin: 20px auto 18px;
-  max-width: 860px;
+  font-size: 1.6rem;
+  max-width: 880px;
+  margin: 18px auto;
 }
 
 .hero-credibility {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--muted);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
   gap: 18px;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
 }
 
 /* HERO IMAGES */
@@ -121,88 +132,86 @@ body {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 22px;
 }
-/* ---------- IMPACT (ACTUALLY FIXED) ---------- */
 
-.section .impact-simple {
+/* ---------------- IMPACT ---------------- */
+
+.impact-simple {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px;
-  max-width: 1000px;   /* THIS is what makes it feel big */
-  margin: 48px auto 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  max-width: 1100px;
+  margin: 56px auto 0;
 }
 
-.section .impact-card {
-  background: white;
-  padding: 48px 40px;  /* visibly larger cards */
+.impact-card {
+  background: var(--bg-white);
+  padding: 48px 40px;
   border-radius: 28px;
   text-align: center;
 }
 
-.section .impact-card h3 {
+.impact-card h3 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 2.2rem;   /* clearly bigger */
+  font-size: 2.1rem;
   margin-bottom: 14px;
 }
 
-.section .impact-card p {
+.impact-card p {
   font-size: 1.15rem;
   color: var(--muted);
-  max-width: 420px;
-  margin: 0 auto;
 }
 
-/* ---------- HOW IT WORKS ---------- */
+/* ---------------- HOW IT WORKS ---------------- */
 
 .steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 34px;
+  gap: 36px;
 }
 
 .step {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
+  background: var(--bg-white);
+  padding: 36px;
+  border-radius: 24px;
 }
 
 .step h3 {
   margin-bottom: 10px;
 }
 
-/* ---------- WHAT WE TEACH ---------- */
+/* ---------------- WHAT WE TEACH ---------------- */
 
 .teach-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 32px;
 }
 
 .teach-card {
-  background: white;
-  border-radius: 20px;
+  background: var(--bg-white);
+  border-radius: 24px;
   overflow: hidden;
 }
 
-/* FIX: no more cropping */
 .teach-card img {
   width: 100%;
-  height: 260px;
-  object-fit: contain;        /* KEY FIX */
+  height: 300px;              /* BIGGER, readable */
+  object-fit: contain;
   background: var(--bg-soft);
 }
 
 .teach-card-content {
-  padding: 18px 20px 22px;
+  padding: 22px 24px 26px;
 }
 
 .teach-card h4 {
-  font-size: 1.25rem;
-  margin-bottom: 6px;
+  font-size: 1.35rem;
+  margin-bottom: 8px;
 }
 
-/* ---------- CLASSROOM ---------- */
+/* ---------------- CLASSROOM ---------------- */
 
 .classroom-grid {
   display: grid;
@@ -215,42 +224,51 @@ body {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 22px;
 }
 
 .caption {
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 1rem;
   color: var(--muted);
 }
 
-/* ---------- FOUNDER ---------- */
+/* ---------------- FOUNDER ---------------- */
 
 .founder-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.9fr 1.1fr; /* image slightly smaller */
   gap: 48px;
   align-items: center;
 }
 
 .founder img {
   width: 100%;
-  max-width: 360px;
+  max-width: 300px; /* smaller + professional */
   border-radius: 22px;
 }
 
-/* ---------- CONTACT ---------- */
+/* ---------------- CONTACT ---------------- */
 
 .contact-buttons {
   display: flex;
   gap: 18px;
 }
 
-/* ---------- MOBILE ---------- */
+/* ---------------- MOBILE FIXES ---------------- */
 
 @media (max-width: 900px) {
+
+  body {
+    font-size: 16px;
+  }
+
   .hero h1 {
-    font-size: 3.6rem;
+    font-size: 3.4rem;
+  }
+
+  .hero-logo {
+    height: 110px;
   }
 
   .hero-images,
@@ -260,6 +278,14 @@ body {
   .classroom-grid,
   .founder-content {
     grid-template-columns: 1fr;
+  }
+
+  .impact-card {
+    padding: 36px 30px;
+  }
+
+  .teach-card img {
+    height: 260px;
   }
 
   .hero-buttons,
