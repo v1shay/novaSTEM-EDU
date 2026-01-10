@@ -272,11 +272,13 @@ p { color: var(--muted); }
 }
 
 .founder img {
+  display: block;
   width: 100%;
-  max-width: 220px;
+  max-width: 240px;   /* ← HARD CAP */
   height: auto;
   border-radius: 20px;
   object-fit: cover;
+
 }
 
 .founder-content p {
@@ -317,9 +319,17 @@ p { color: var(--muted); }
 
   .teach-card img { height: 700px; }
 
+  @media (max-width: 768px) {
+
   .founder img {
-    max-width: 40px;
-    margin: 0 auto 10px;
+    width: 100%;
+    max-width: 160px;   /* ← SMALLER ON MOBILE */
+    height: auto;
+    margin: 0 auto 20px;
+  }
+
+}
+
   }
 
   .founder-content {
