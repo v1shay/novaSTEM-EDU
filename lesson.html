@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NovaSTEM EDU — Lesson</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Lesson-specific layout */
+    .lesson-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .lesson-box {
+      background: white;
+      padding: 36px;
+      border-radius: 22px;
+      margin-top: 36px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: 16px;
+      font-size: 1rem;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      font-family: "IBM Plex Sans", sans-serif;
+      margin-top: 18px;
+    }
+
+    .feedback-box {
+      background: var(--bg-soft);
+      border-radius: 18px;
+      padding: 22px;
+      margin-top: 22px;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero section">
+  <div class="container hero-inner">
+    <h1 id="lesson-title">Lesson</h1>
+    <p class="hero-tagline" id="lesson-subtitle"></p>
+
+    <div class="hero-buttons">
+      <a href="edu-coding.html" class="btn">← Back to Coding</a>
+      <a href="edu.html" class="btn">← Back to EDU</a>
+    </div>
+  </div>
+</section>
+
+<!-- LESSON CONTENT -->
+<section class="section">
+  <div class="container lesson-container">
+
+    <div class="lesson-box">
+      <h2>Challenge</h2>
+      <p id="lesson-prompt"></p>
+
+      <textarea id="student-input" placeholder="Explain your thinking step by step..."></textarea>
+
+      <div class="hero-buttons" style="margin-top: 24px;">
+        <button class="btn" onclick="getHint()">Get a Hint</button>
+        <button class="btn" onclick="checkReasoning()">Check Reasoning</button>
+      </div>
+
+      <div id="feedback" class="feedback-box" style="display:none;"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+/* ===============================
+   LESSON DATA (MVP)
+================================ */
+
+const lessons = {
+  "algorithms-1": {
+    title: "What Is an Algorithm?",
+    subtitle: "Designing step-by-step solutions",
+    prompt:
+      "Imagine you are teaching a robot how to make a peanut butter sandwich. " +
+      "Write clear, step-by-step instructions so the robot does not get confused.",
+    hints: [
+      "Start from the very beginning. What happens first?",
+      "Think about the order of actions. What must happen before something else?",
+      "Are there any decisions the robot needs to make?",
+      "Try numbering your steps clearly."
+    ],
+    feedback:
+      "Good algorithms are clear, ordered, and detailed. " +
+      "If a step could be misunderstood, it probably needs more detail."
+  },
+
+  "logic-1": {
+    title: "If / Then Logic",
+    subtitle: "Making decisions in algorithms",
+    prompt:
+      "You are designing an algorithm for getting dressed. " +
+      "Explain what happens if it is raining versus if it is sunny.",
+    hints: [
+      "What decision must be checked first?",
+      "What happens if the condition is true?",
+      "What happens if the condition is false?"
+    ],
+    feedback:
+      "Conditional logic helps algorithms make decisions. " +
+      "Clear if/then reasoning prevents mistakes."
+  }
+};
+
+/* ===============================
+   LOAD LESSON
+================================ */
+
+const params = new URLSearchParams(window.location.search);
+const lessonId = params.get("id");
+
+const lesson = lessons[lessonId];
+
+document.getElementById("lesson-title").innerText = lesson.title;
+document.getElementById("lesson-subtitle").innerText = lesson.subtitle;
+document.getElementById("lesson-prompt").innerText = lesson.prompt;
+
+/* ===============================
+   HINT SYSTEM
+================================ */
+
+let hintIndex = 0;
+
+function getHint() {
+  const feedbackBox = document.getElementById("feedback");
+  feedbackBox.style.display = "block";
+
+  if (hintIndex < lesson.hints.length) {
+    feedbackBox.innerText = "Hint: " + lesson.hints[hintIndex];
+    hintIndex++;
+  } else {
+    feedbackBox.innerText =
+      "Try reviewing your steps carefully and checking the order of actions.";
+  }
+}
+
+/* ===============================
+   REASONING CHECK
+================================ */
+
+function checkReasoning() {
+  const input = document.getElementById("student-input").value.trim();
+  const feedbackBox = document.getElementById("feedback");
+  feedbackBox.style.display = "block";
+
+  if (input.length < 40) {
+    feedbackBox.innerText =
+      "Try explaining your reasoning in more detail. " +
+      "Clear thinking requires clear explanations.";
+    return;
+  }
+
+  feedbackBox.innerText = lesson.feedback;
+}
+</script>
+
+</body>
+</html>
