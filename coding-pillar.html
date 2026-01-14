@@ -139,13 +139,14 @@
   const descEl = document.getElementById("pillar-description");
   const lessonGrid = document.getElementById("lesson-grid");
 
-  if (!pillarId || !COURSE_MAP.coding.pillars[pillarId]) {
+  if (!pillar) {
     titleEl.textContent = "Invalid Pillar";
     descEl.textContent = "This pillar does not exist.";
     throw new Error("Invalid pillar ID");
   }
 
-  const pillar = COURSE_MAP.coding.pillars[pillarId];
+
+  const pillar = COURSE_MAP.coding.pillars.find(p => p.id === pillarId);
 
   titleEl.textContent = pillar.title;
   descEl.textContent = pillar.description;
